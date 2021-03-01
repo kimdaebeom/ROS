@@ -1,0 +1,26 @@
+<launch>
+
+	<arg name="max_speed" default="70" />
+	<arg name="max_steering_angle" default="25" />
+	<arg name="min_steering_angle" default="-25" />
+	<arg name="start_param" default="true" />
+
+	<node name="ackermann_control" pkg="kuuve_practice" type="ackermann_control" output="screen">
+		<param name="max_speed" value="$(arg max_speed)" />
+		<param name="max_steering_angle" value="$(arg max_steering_angle)" />
+		<param name="min_steering_angle" value="$(arg min_steering_angle)" />
+		<param name="start_param" value="$(arg start_param)" />
+	</node>
+	
+	<node name="kuuve_example" pkg="kuuve_practice" type="kuuve_example" output="screen">
+		<param name="start_param" value="$(arg start_param)" />
+	</node>
+	
+	<node name="trigger_node" pkg="kuuve_practice" type="trigger_node" output="screen">
+		<param name="max_speed" value="$(arg max_speed)" />
+		<param name="max_steering_angle" value="$(arg max_steering_angle)" />
+		<param name="min_steering_angle" value="$(arg min_steering_angle)" />
+		<param name="start_param" value="$(arg start_param)" />
+	</node>
+
+</launch>
